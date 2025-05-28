@@ -14,7 +14,7 @@
             <p><strong>Capacidad:</strong> {{ espacio.capacidad }} personas</p>
             <p><strong>Descripción:</strong> {{ espacio.descripcion }} </p>
 
-            <a href="{% url 'crear_reserva' espacio.id %}" class="btn btn-success mt-3">Reservar este espacio</a>
+            <a href="{% url 'crear_reserva' espacio.id %}" class="btn btn-success mt-3">Hacer reservación</a>
         </div>
     </div>
 
@@ -31,4 +31,9 @@
         </div>
     </div>
 </div>
+
+<div class="mt-4">
+    <a href="{% url 'inicio' %}" class="btn btn-primary">Volver al Inicio</a>
+</div>
 {% endblock %}
+
