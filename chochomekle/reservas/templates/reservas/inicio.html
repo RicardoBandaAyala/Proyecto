@@ -2,19 +2,25 @@
 {% load static %}
 {% block content %}
 <!-- Botones -->
-<form class="row g-3 mb-4">
-    <div class="col-md-4">
-        <input type="text" class="form-control" placeholder="¿Adónde vas?">
+<form method="get" class="row b-3 mb-4" action="{% url 'inicio' %}">
+    <div class="col-md-3">
+        <label>¿Adónde vas?</label>
+        <input type="text" name="q" placeholder="Nombre del espacio">
     </div>
     <div class="col-md-3">
-        <input type="date" class="form-control" placeholder="Fecha de entrada">
+        <label>Fecha de entrada</label>
+        <input type="date" name="fecha_inicio">
     </div>
     <div class="col-md-3">
-        <input type="date" class="form-control" placeholder="Fecha de salida">
+        <label>Fecha de salida</label>
+        <input type="date" name="fecha_fin">
     </div>
-    <div class="col-md-2 d-grid">
+    <div class="col-md-3 d-grid">
         <button type="submit" class="btn btn-primary">Buscar</button>
     </div>
+    {% if mensaje %}
+    <p style="color: red;">{{ mensaje }}</p>
+    {% endif %}
 </form>
     <div class="mb-3">
         <a href="{% url 'mis_reservas' %}" class="btn btn-outline-info me-2">Mis Reservas</a>
@@ -23,23 +29,26 @@
 <h2 class="mb-3">Espacios</h2>
 <div class="row">
     {% for espacio in espacios %}
-    <div class="col-md-4 mb-4">
-        <div class="card h-100 d-flex flex-column">
-            <img src="{% static 'images/espacio' %}{{ forloop.counter }}.jpg" class="card-img-top" alt="{{ espacio.nombre }}" height="200">
-            <!-- Asegúrate de que las imágenes están en la carpeta correcta -->
-            <!-- Puedes cambiar el nombre de las imágenes según tu estructura -->
-           <div class="card-body d-flex flex-column justify-content-between">
-                <h5 class="card-title">{{ espacio.nombre }}</h5>
+    <div class="espacio col-md-4 mb-4">
+        <div class="card h-100 d-flex flex-column shadow">
+            <img src="{% static 'images/espacio' %}{{ espacio.id }}.jpg" class="card-img-top" alt="{{ espacio.nombre }}" height="200">
+            <div class="card-body d-flex flex-column justify-content-between">
+                <h3 class="card-title">{{ espacio.nombre }}</h3>
                 <p class="card-text">{{ espacio.ubicacion }}<br>Capacidad: {{ espacio.capacidad }}</p>
-                <a href="{% url 'detalle_espacio' espacio.id %}" class="btn btn-outline-primary" >Ver más</a>
+                {% if disponible %}
+                    <p style="color: green;">Disponible</p>
+                {% else %}
+                    <p style="color: red;">No disponible en las fechas seleccionadas</p>
+                {% endif %}
+                <a href="{% url 'detalle_espacio' espacio.id %}" class="btn btn-outline-primary">Ver detalles</a>
             </div>
         </div>
     </div>
     {% empty %}
-    <!-- Si no hay lugares -->
-    <div class="col-12">
-        <p>No hay espacios disponibles.</p>
-    </div>
     {% endfor %}
-</div>
+    {% if not espacios %}
+    <div class="col-12">
+        <p>No hay espacios disponibles en este momento.</p>
+    </div>
+    {% endif %}
 {% endblock %}

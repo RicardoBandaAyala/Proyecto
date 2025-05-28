@@ -14,3 +14,8 @@ class ReservaForm(forms.ModelForm):
             'espacio': forms.Select(attrs={'class': 'form-select'}),
             'estado': forms.Select(attrs={'class': 'form-select'}),
         }
+# Formulario para buscar espacios disponibles
+class BuscarEspacioForm(forms.Form):
+    nombre = forms.CharField(required=False, label="¿Adónde vas?")
+    fecha_inicio = forms.DateField(required=False, widget=forms.DateInput(attrs={'type': 'date'}))
+    fecha_fin = forms.DateField(required=False, widget=forms.DateInput(attrs={'type': 'date'}))

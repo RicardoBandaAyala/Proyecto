@@ -13,6 +13,19 @@
                         <h5 class="card-title">{{ reserva.espacio.nombre }}</h5>
                         <p><strong>Fecha de Inicio:</strong> {{ reserva.fecha_inicio }}</p>
                         <p><strong>Fecha de Fin:</strong> {{ reserva.fecha_fin }}</p>
+                        {% if reserva.id %}
+                            <form method="post" action="{% url 'actualizar_reserva' reserva.id %}">
+                                {% csrf_token %}
+                                <select name="estado">
+                                    <option value="pendiente" {% if reserva.estado == 'pendiente' %}selected{% endif %}>Pendiente</option>
+                                    <option value="confirmada" {% if reserva.estado == 'confirmada' %}selected{% endif %}>Confirmada</option>
+                                    <option value="cancelada" {% if reserva.estado == 'cancelada' %}selected{% endif %}>Cancelada</option>
+                                </select>
+                                <button type="submit">Actualizar estado</button>
+                            </form>
+                        {% else %}
+                            <p style="color: red;">Error: Reserva inválida.</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -22,6 +35,17 @@
     {% else %}
         <p>No tienes reservas registradas.</p>
     {% endif %}
+    {% if reserva.id %}
+        <form method="POST" action="{% url 'actualizar_reserva' reserva.id %}">
+    {% endif %}
+        {% csrf_token %}
+        <select name="estado">
+            {% for key, value in reserva.ESTADOS %}
+                <option value="{{ key }}" {% if key == reserva.estado %}selected{% endif %}>{{ value }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Actualizar</button>
+    </form>
 </div>
 <div class="mt-4">
     <a href="{% url 'inicio' %}" class="btn btn-primary">Volver al Inicio</a>

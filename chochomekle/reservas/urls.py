@@ -8,6 +8,7 @@ urlpatterns = [
     #path('crear/', views.crear_reserva, name='crear_reserva'),
     path('crear/<int:espacio_id>/', views.crear_reserva, name='crear_reserva'),             # La ruta 'crear/' permite crear una reserva sin especificar un espacio, mientras que 'crear/<int:espacio_id>/' permite crear una reserva para un espacio específico.
     path('mis-reservas/', views.mis_reservas, name='mis_reservas'),
+    path('actualizar_reserva/<int:reserva_id>/', views.actualizar_reserva, name='actualizar_reserva'),
     path('admin-panel/', views.panel_admin, name='panel_admin'),
     path('detalle_espacio/', views.detalle_espacio, name='detalle_espacio'),
 ]
