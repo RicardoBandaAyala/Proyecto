@@ -16,6 +16,7 @@ class Espacio(models.Model):
     ubicacion = models.CharField(max_length=100)
     capacidad = models.IntegerField()
     disponible = models.BooleanField(default=True)
+    descripcion = models.TextField(default='Sin descripción')
 
     def __str__(self):
         return self.nombre

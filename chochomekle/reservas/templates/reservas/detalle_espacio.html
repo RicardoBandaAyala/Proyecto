@@ -1,10 +1,34 @@
-{% extends "reservas/base.html" %}
-<!-- blcok contest funciona para especificar el codigo que ocupa el contenido -->
-{% block content %}
-<h2>{{ espacio.nombre }}</h2>
-<p><strong>Ubicación:</strong> {{ espacio.ubicacion }}</p>
-<p><strong>Capacidad:</strong> {{ espacio.capacidad }}</p>
-<p><strong>Disponible:</strong> {{ espacio.disponible|yesno:"Sí,No" }}</p>
+{% extends 'reservas/base.html' %}
+{% load static %}
 
-<a href="{% url 'crear_reserva' espacio.id %}">Reservar este espacio</a>
+{% block content %}
+<div class="container py-4">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Imagen fija basada en ID -->
+            <img src="{% static 'images/espacio' %}{{ espacio.id }}.jpg" class="img-fluid rounded" alt="{{ espacio.nombre }}">
+        </div>
+        <div class="col-md-6">
+            <h2>{{ espacio.nombre }}</h2>
+            <p><strong>Ubicación:</strong> {{ espacio.ubicacion }}</p>
+            <p><strong>Capacidad:</strong> {{ espacio.capacidad }} personas</p>
+            <p><strong>Descripción:</strong> {{ espacio.descripcion }} </p>
+
+            <a href="{% url 'crear_reserva' espacio.id %}" class="btn btn-success mt-3">Reservar este espacio</a>
+        </div>
+    </div>
+
+    <!-- Si quieres agregar más imágenes debajo -->
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <img src="{% static 'images/espacio' %}{{ espacio.id }}_1.jpg" class="img-fluid rounded mb-2" alt="Extra 1">
+        </div>
+        <div class="col-md-4">
+            <img src="{% static 'images/espacio' %}{{ espacio.id }}_2.jpg" class="img-fluid rounded mb-2" alt="Extra 2">
+        </div>
+        <div class="col-md-4">
+            <img src="{% static 'images/espacio' %}{{ espacio.id }}_3.jpg" class="img-fluid rounded mb-2" alt="Extra 3">
+        </div>
+    </div>
+</div>
 {% endblock %}

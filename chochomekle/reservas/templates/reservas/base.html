@@ -8,16 +8,30 @@
     <style>
         body { background-color: #f0f2f5; }
         .hero { background-color: #003580; color: white; padding: 2rem; }
+    .text-shadow {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    }
+    .hero {
+        background: linear-gradient(to right, #003580, #0056b3);
+        border-radius: 10px;
+        margin-bottom: 30px;
+    }
     </style>
 </head>
 <body>
-    <div class="container-fluid hero text-center">
-        <h1>Ofertas de principios de año</h1>
-        <p>Ahorra un 20% o más en tu próxima reserva</p>
+    <div class="hero text-center text-white py-5 px-3">
+        <h1 class="display-4 fw-bold text-shadow">CHOCHOMEKLE</h1>
+        <p class="lead">Ahorra un 20% o más en tu próxima reserva</p>
     </div>
     <div class="container my-4">
         {% block content %}
         {% endblock %}
     </div>
 </body>
+
+<footer class="text-center text-light py-3" style="background-color: #003580;">
+    <p>&copy; 2025 Chochomekle. Todos los derechos reservados.</p>
+    <p>Síguenos en nuestras redes sociales</p>
+    <a href="#" class="text-light mx-2"><i class="fab fa-facebook"></i></a>
+    <a href="#" class="text-light
 </html>

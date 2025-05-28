@@ -1,5 +1,5 @@
 {% extends "reservas/base.html" %}
-
+{% load static %}
 {% block content %}
 <!-- Botones -->
 <form class="row g-3 mb-4">
@@ -17,16 +17,18 @@
     </div>
 </form>
 <!-- Lugares -->
-<h2 class="mb-3">Espacios Disponibles</h2>
+<h2 class="mb-3">Espacios</h2>
 <div class="row">
     {% for espacio in espacios %}
     <div class="col-md-4 mb-4">
-        <div class="card h-100">
-            <img src="https://via.placeholder.com/400x200?text={{ espacio.nombre }}" class="card-img-top" alt="{{ espacio.nombre }}">
-            <div class="card-body">
+        <div class="card h-100 d-flex flex-column">
+            <img src="{% static 'images/espacio' %}{{ forloop.counter }}.jpg" class="card-img-top" alt="{{ espacio.nombre }}" height="200">
+            <!-- Asegúrate de que las imágenes están en la carpeta correcta -->
+            <!-- Puedes cambiar el nombre de las imágenes según tu estructura -->
+           <div class="card-body d-flex flex-column justify-content-between">
                 <h5 class="card-title">{{ espacio.nombre }}</h5>
                 <p class="card-text">{{ espacio.ubicacion }}<br>Capacidad: {{ espacio.capacidad }}</p>
-                <a href="{% url 'detalle_espacio' espacio.id %}" class="btn btn-outline-primary">Ver más</a>
+                <a href="{% url 'detalle_espacio' espacio.id %}" class="btn btn-outline-primary" >Ver más</a>
             </div>
         </div>
     </div>

@@ -11,13 +11,14 @@ def inicio(request):
     return render(request, 'reservas/inicio.html', {'espacios': espacios})
 
 # View para mostrar los detalles de un espacio específico
-def detalle_espacio(request, espacio_id):
-    espacio = get_object_or_404(Espacio, pk=espacio_id)
+def detalle_espacio(request, id):
+    espacio = get_object_or_404(Espacio, id=id)
     return render(request, 'reservas/detalle_espacio.html', {'espacio': espacio})
 
 # View para crear una nueva reserva para un espacio específico
 def crear_reserva(request, espacio_id):
-    espacio = get_object_or_404(Espacio, pk=espacio_id)
+    espacio = get_object_or_404(Espacio, id=espacio_id)
+    # Si el método es POST, procesar el formulario de reserva
     if request.method == 'POST':
         form = ReservaForm(request.POST)
         if form.is_valid():
