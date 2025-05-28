@@ -1,0 +1,10 @@
+{% extends "reservas/base.html" %}
+<!-- blcok contest funciona para especificar el codigo que ocupa el contenido -->
+{% block content %}
+<h2>{{ espacio.nombre }}</h2>
+<p><strong>Ubicación:</strong> {{ espacio.ubicacion }}</p>
+<p><strong>Capacidad:</strong> {{ espacio.capacidad }}</p>
+<p><strong>Disponible:</strong> {{ espacio.disponible|yesno:"Sí,No" }}</p>
+
+<a href="{% url 'crear_reserva' espacio.id %}">Reservar este espacio</a>
+{% endblock %}

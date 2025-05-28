@@ -1,0 +1,12 @@
+{% extends "reservas/base.html" %}
+<!-- blcok contest funciona para especificar el codigo que ocupa el contenido -->
+{% block content %}
+<h2>Reservar: {{ espacio.nombre }}</h2>
+
+<!--Este código define un formulario HTML que está destinado a ser utilizado -->
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Confirmar Reserva</button>
+</form>
+{% endblock %}

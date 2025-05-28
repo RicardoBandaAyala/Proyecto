@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Chochomekle</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f0f2f5; }
+        .hero { background-color: #003580; color: white; padding: 2rem; }
+    </style>
+</head>
+<body>
+    <div class="container-fluid hero text-center">
+        <h1>Ofertas de principios de año</h1>
+        <p>Ahorra un 20% o más en tu próxima reserva</p>
+    </div>
+    <div class="container my-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

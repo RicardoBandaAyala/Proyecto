@@ -1,0 +1,33 @@
+{% extends "reservas/base.html" %}
+
+<!-- blcok contest funciona para especificar el codigo que ocupa el contenido -->
+{% block content %}
+<h2>Panel Administrativo</h2>
+
+<!-- Apartado para la tabla de la Administracion -->
+<table>
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Espacio</th>
+            <th>Fechas</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for reserva in reservas %}
+        <tr>
+            <td>{{ reserva.cliente.nombre }}</td>
+            <td>{{ reserva.espacio.nombre }}</td>
+            <td>{{ reserva.fecha_inicio }} → {{ reserva.fecha_fin }}</td>
+            <td>{{ reserva.estado }}</td>
+        </tr>
+        {% empty %}
+        <!-- Si no hay reservas, se muestra este mensaje -->
+        <tr>
+            <td colspan="4">No hay reservas en el sistema.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

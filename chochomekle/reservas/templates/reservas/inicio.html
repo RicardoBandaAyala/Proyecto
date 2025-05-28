@@ -1,0 +1,40 @@
+{% extends "reservas/base.html" %}
+
+{% block content %}
+<!-- Botones -->
+<form class="row g-3 mb-4">
+    <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="¿Adónde vas?">
+    </div>
+    <div class="col-md-3">
+        <input type="date" class="form-control" placeholder="Fecha de entrada">
+    </div>
+    <div class="col-md-3">
+        <input type="date" class="form-control" placeholder="Fecha de salida">
+    </div>
+    <div class="col-md-2 d-grid">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+</form>
+<!-- Lugares -->
+<h2 class="mb-3">Espacios Disponibles</h2>
+<div class="row">
+    {% for espacio in espacios %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <img src="https://via.placeholder.com/400x200?text={{ espacio.nombre }}" class="card-img-top" alt="{{ espacio.nombre }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ espacio.nombre }}</h5>
+                <p class="card-text">{{ espacio.ubicacion }}<br>Capacidad: {{ espacio.capacidad }}</p>
+                <a href="{% url 'detalle_espacio' espacio.id %}" class="btn btn-outline-primary">Ver más</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <!-- Si no hay lugares -->
+    <div class="col-12">
+        <p>No hay espacios disponibles.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
