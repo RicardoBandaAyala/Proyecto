@@ -5,15 +5,15 @@
 <form method="get" class="row b-3 mb-4" action="{% url 'inicio' %}">
     <div class="col-md-3">
         <label>¿Adónde vas?</label>
-        <input type="text" name="q" placeholder="Nombre del espacio">
+        <input type="text" name="q" placeholder="Nombre del espacio" class="form-control" value="{{ request.GET.q}}">
     </div>
     <div class="col-md-3">
         <label>Fecha de entrada</label>
-        <input type="date" name="fecha_inicio">
+        <input type="date" name="fecha_inicio" class="form-control" value="{{ request.GET.fecha_inicio }}">
     </div>
     <div class="col-md-3">
         <label>Fecha de salida</label>
-        <input type="date" name="fecha_fin">
+        <input type="date" name="fecha_fin" class="form-control" value="{{ request.GET.fecha_fin }}">
     </div>
     <div class="col-md-3 d-grid">
         <button type="submit" class="btn btn-primary">Buscar</button>

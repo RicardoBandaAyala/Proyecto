@@ -19,3 +19,5 @@ class BuscarEspacioForm(forms.Form):
     nombre = forms.CharField(required=False, label="¿Adónde vas?")
     fecha_inicio = forms.DateField(required=False, widget=forms.DateInput(attrs={'type': 'date'}))
     fecha_fin = forms.DateField(required=False, widget=forms.DateInput(attrs={'type': 'date'}))
+
+
